@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -60,6 +61,13 @@ public class RecipesFragment extends Fragment {
                     recipeNames
             );
             recipeListView.setAdapter(adapter);
+
+            // click listener to handle recipe selection
+            recipeListView.setOnItemClickListener((parent, view1, position, id) -> {
+                Toast.makeText(requireContext(), recipeNames[position], Toast.LENGTH_SHORT).show();
+
+
+            });
 
         } catch (IOException | JSONException e) {
             e.printStackTrace();
