@@ -1,9 +1,62 @@
 {
-  "name": "Spaghetti Bolognese",
-  "ingredients": [
-    "Spaghetti",
-    "Minced beef",
-    "Tomato sauce"
-  ],
-  "method": "Boil the spaghetti and cook the beef with tomato sauce."
+  "recipes": [
+    {
+      "name": "Spaghetti Carbonara",
+      "ingredients": [
+        "Spaghetti",
+        "Guanciale",
+        "Egg yolks",
+        "Pecorino Romano",
+        "Black pepper"
+      ],
+      "method": "Boil the spaghetti. Fry the guanciale until crispy. Mix egg yolks, Pecorino and black pepper. Combine everything off the heat with some pasta water."
+
+    },
+    {
+      "name": "Spaghetti Bolognese",
+      "ingredients": [
+        "Spaghetti",
+        "Minced beef",
+        "Tomato passata",
+        "Onion",
+        "Carrot",
+        "Olive oil"
+      ],
+      "method": "Boil the spaghetti. Fry the onion, carrot and minced beef. Add tomato passata and simmer until cooked. Mix with spaghetti."
+    },
+    {
+      "name": "Penne Arrabbiata",
+      "ingredients": [
+        "Penne",
+        "Tomatoes",
+        "Garlic",
+        "Chilli flakes",
+        "Olive oil",
+        "Parsley"
+      ],
+      "method": "Boil the penne. Fry garlic and chilli flakes in olive oil. Add tomatoes and simmer. Toss the pasta in the sauce and garnish with parsley."
+    },
+    {
+      "name": "Fettuccine Alfredo",
+      "ingredients": [
+        "Fettuccine",
+        "Butter",
+        "Parmesan cheese",
+        "Black pepper"
+      ],
+      "method": "Boil the fettuccine. Add butter and grated Parmesan with a little pasta water. Toss until a creamy sauce forms. Season with black pepper."
+    },
+    {
+      "name": "Spaghetti Aglio e Olio",
+      "ingredients": [
+        "Spaghetti",
+        "Garlic",
+        "Extra virgin olive oil",
+        "Chilli flakes",
+        "Parsley",
+        "Salt"
+      ],
+      "method": "Boil the spaghetti. Gently cook sliced garlic and chilli flakes in olive oil. Add spaghetti and some pasta water. Toss everything together and finish with parsley."
+    }
+  ]
 }
