@@ -1,3 +1,4 @@
+
 package com.example.ubicomp4;
 
 import android.os.Bundle;
@@ -64,8 +65,28 @@ public class RecipesFragment extends Fragment {
 
             // click listener to handle recipe selection
             recipeListView.setOnItemClickListener((parent, view1, position, id) -> {
-                Toast.makeText(requireContext(), recipeNames[position], Toast.LENGTH_SHORT).show();
 
+                try {
+                    JSONObject selectedRecipe = recipesArray.getJSONObject(position); //gets the selected recipe
+
+                    //container for passing info
+                    Bundle bundle = new Bundle(); //
+                    bundle.putString("name", selectedRecipe.getString("name"));
+                    bundle.putString("method", selectedRecipe.getString("method"));
+                    bundle.putString("ingredients",
+                            selectedRecipe.getJSONArray("ingredients").toString());
+
+                    IngredientsFragment detailFragment = new IngredientsFragment();
+                    detailFragment.setArguments(bundle);
+
+                    getParentFragmentManager().beginTransaction() //changes fragment/ screen change
+                            .replace(R.id.fragment_container, detailFragment)
+                            .addToBackStack(null)
+                            .commit();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
             });
 
