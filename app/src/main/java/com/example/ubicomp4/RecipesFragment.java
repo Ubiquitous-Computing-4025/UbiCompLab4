@@ -41,6 +41,7 @@ public class RecipesFragment extends Fragment {
 
             String json = new String(data, StandardCharsets.UTF_8); //converts the bytes to a string
 
+            // parsing the JSON data
             JSONObject jsonObject = new JSONObject(json); //parses the string to a JSON object
 
             JSONArray recipesArray = jsonObject.getJSONArray("recipes"); // loops through the JSON array
