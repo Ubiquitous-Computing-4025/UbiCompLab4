@@ -8,6 +8,14 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.ArrayAdapter;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONException;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+
 public class RecipesFragment extends Fragment {
 
     public RecipesFragment() {
@@ -22,20 +30,39 @@ public class RecipesFragment extends Fragment {
 
         ListView recipeListView = view.findViewById(R.id.recipeListView);
 
-        String[] recipeNames = {
-                "Spaghetti Carbonara",
-                "Spaghetti Bolognese",
-                "Penne Arrabbiata",
-                "Fettuccine Alfredo",
-                "Spaghetti Aglio e Olio"
-        };
+        try {
+            InputStream inputStream = requireContext().getAssets().open("recipes.json"); //open file
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                requireContext(),
-                android.R.layout.simple_list_item_1,
-                recipeNames
-        );
-        recipeListView.setAdapter(adapter);
+            byte[] data = new byte[inputStream.available()];
+
+            inputStream.read(data); //reads the bytes of the file
+
+            inputStream.close();
+
+            String json = new String(data, StandardCharsets.UTF_8); //converts the bytes to a string
+
+            JSONObject jsonObject = new JSONObject(json); //parses the string to a JSON object
+
+            JSONArray recipesArray = jsonObject.getJSONArray("recipes"); // loops through the JSON array
+
+            String[] recipeNames = new String[recipesArray.length()];
+
+            for (int i = 0; i < recipesArray.length(); i++) {
+                JSONObject recipe = recipesArray.getJSONObject(i);
+                recipeNames[i] = recipe.getString("name");
+            }
+
+            //create an ArrayAdapter to populate the ListView with recipe names
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                    requireContext(),
+                    android.R.layout.simple_list_item_1,
+                    recipeNames
+            );
+            recipeListView.setAdapter(adapter);
+
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+        }
 
         return view;
     }
