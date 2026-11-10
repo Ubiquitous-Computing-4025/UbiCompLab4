@@ -1,6 +1,7 @@
 
 package com.example.ubicomp4;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -91,11 +92,10 @@ public class RecipesFragment extends Fragment {
 
                     } else {
 
-                        // Portrait: replace the recipe list with ingredients
-                        getParentFragmentManager().beginTransaction()
-                                .replace(R.id.fragment_container, detailFragment)
-                                .addToBackStack(null)
-                                .commit();
+                        // Portrait: start the IngredientsActivity
+                        Intent intent = new Intent(requireContext(), IngredientsActivity.class);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
                     }
 
                 } catch (JSONException e) {
