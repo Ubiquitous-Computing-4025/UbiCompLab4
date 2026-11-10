@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 public class IngredientsFragment extends Fragment {
 
     public IngredientsFragment() {
@@ -29,7 +32,21 @@ public class IngredientsFragment extends Fragment {
             //retrieves the details
             recipeTitle.setText(bundle.getString("name"));
             methodText.setText(bundle.getString("method"));
-            ingredientsText.setText(bundle.getString("ingredients"));
+            try {
+                //get teh string ingredients and parses the ingredients into json array
+                JSONArray ingredients = new JSONArray(bundle.getString("ingredients"));
+
+                String ingredientsList = "Ingredients:\n";
+
+                for (int i = 0; i < ingredients.length(); i++) {
+                    ingredientsList += "~   " + ingredients.getString(i) + "\n";
+                }
+
+                ingredientsText.setText(ingredientsList);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
         return view;
 

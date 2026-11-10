@@ -81,7 +81,7 @@ public class RecipesFragment extends Fragment {
 
                     getParentFragmentManager().beginTransaction() //changes fragment/ screen change
                             .replace(R.id.fragment_container, detailFragment)
-                            .addToBackStack(null)
+                            .addToBackStack(null) //from android
                             .commit();
 
                 } catch (JSONException e) {
