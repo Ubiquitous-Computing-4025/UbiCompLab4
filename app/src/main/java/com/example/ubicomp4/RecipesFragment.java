@@ -69,7 +69,7 @@ public class RecipesFragment extends Fragment {
                 try {
                     JSONObject selectedRecipe = recipesArray.getJSONObject(position); //gets the selected recipe
 
-                    //container for passing info
+                    //container for passing details
                     Bundle bundle = new Bundle(); //
                     bundle.putString("name", selectedRecipe.getString("name"));
                     bundle.putString("method", selectedRecipe.getString("method"));

@@ -23,9 +23,14 @@ public class IngredientsFragment extends Fragment {
         TextView ingredientsText = view.findViewById(R.id.ingredientsText);
         TextView methodText = view.findViewById(R.id.methodText);
 
-        recipeTitle.setText("Spaghetti Carbonara");
-        ingredientsText.setText("Ingredients: Spaghetti, Guanciale, Eggs");
-        methodText.setText("Method: Boil the pasta and prepare the sauce.");
+        Bundle bundle = getArguments(); //gets the bundle from the previous fragment with the details
+
+        if (bundle != null) {
+            //retrieves the details
+            recipeTitle.setText(bundle.getString("name"));
+            methodText.setText(bundle.getString("method"));
+            ingredientsText.setText(bundle.getString("ingredients"));
+        }
         return view;
 
 
