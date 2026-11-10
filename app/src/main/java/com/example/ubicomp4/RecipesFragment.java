@@ -1,6 +1,7 @@
 
 package com.example.ubicomp4;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -79,10 +80,23 @@ public class RecipesFragment extends Fragment {
                     IngredientsFragment detailFragment = new IngredientsFragment();
                     detailFragment.setArguments(bundle);
 
-                    getParentFragmentManager().beginTransaction() //changes fragment/ screen change
-                            .replace(R.id.fragment_container, detailFragment)
-                            .addToBackStack(null) //from android
-                            .commit();
+                    //check the phone orientation
+                    if (getResources().getConfiguration().orientation ==
+                            Configuration.ORIENTATION_LANDSCAPE) {
+
+                        // Landscape: update the ingredients on the right
+                        getParentFragmentManager().beginTransaction()
+                                .replace(R.id.ingredients_container, detailFragment)
+                                .commit();
+
+                    } else {
+
+                        // Portrait: replace the recipe list with ingredients
+                        getParentFragmentManager().beginTransaction()
+                                .replace(R.id.fragment_container, detailFragment)
+                                .addToBackStack(null)
+                                .commit();
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
